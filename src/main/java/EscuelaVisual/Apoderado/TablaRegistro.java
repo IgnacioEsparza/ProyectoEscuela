@@ -58,11 +58,11 @@ public class TablaRegistro extends javax.swing.JFrame {
         modelo.addRow(dato1);
         modelo.addRow(dato2);
         try {
-           String[] aSplit = anotaciones.split(";");
-            modelo.addRow(aSplit); 
+            String[] aSplit = anotaciones.split(";");
+            modelo.addRow(aSplit);
         } catch (Exception ex) {
-        } 
-        
+        }
+
         modelo.addRow(dato1);
         String[] plan = {"Planificaciones"};
         modelo.addRow(plan);

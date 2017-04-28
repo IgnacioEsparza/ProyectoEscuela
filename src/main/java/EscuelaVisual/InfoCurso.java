@@ -145,10 +145,25 @@ public class InfoCurso extends javax.swing.JFrame {
         });
 
         Alumno4.setText("Alumno4");
+        Alumno4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Alumno4MouseClicked(evt);
+            }
+        });
 
         Alumno5.setText("Alumno5");
+        Alumno5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Alumno5MouseClicked(evt);
+            }
+        });
 
         Alumno6.setText("Alumno6");
+        Alumno6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Alumno6MouseClicked(evt);
+            }
+        });
 
         Alumno7.setText("jLabel2");
 
@@ -364,6 +379,27 @@ public class InfoCurso extends javax.swing.JFrame {
         tr.setVisible(true);
         dispose();
     }//GEN-LAST:event_Alumno3MouseClicked
+
+    private void Alumno4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Alumno4MouseClicked
+        TablaRegistro tr = new TablaRegistro();
+        tr.datos(curso.getEstudiante()[3], curso);
+        tr.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Alumno4MouseClicked
+
+    private void Alumno5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Alumno5MouseClicked
+        TablaRegistro tr = new TablaRegistro();
+        tr.datos(curso.getEstudiante()[4], curso);
+        tr.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Alumno5MouseClicked
+
+    private void Alumno6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Alumno6MouseClicked
+        TablaRegistro tr = new TablaRegistro();
+        tr.datos(curso.getEstudiante()[5], curso);
+        tr.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Alumno6MouseClicked
 
     /**
      * @param args the command line arguments

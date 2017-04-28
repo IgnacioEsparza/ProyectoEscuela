@@ -6,8 +6,8 @@
 package EscuelaPackage;
 
 import EscuelaVisual.ApoderadosColegioVisual;
-import EscuelaVisual.Configuracion;
 import EscuelaVisual.IngresoDatos.IngPlanificaciones;
+import EscuelaVisual.Principal;
 import EscuelaVisual.SelectProfesor;
 import Generar.GenerarCursos;
 import Generar.GuardarXML;
@@ -15,7 +15,7 @@ import java.io.IOException;
 import javax.xml.bind.JAXBException;
 
 /**
- * @version 1.9.29
+ * @version 1.18.36
  * @author Ignacio Esparza
  */
 public class EscuelaProyecto {
@@ -31,10 +31,7 @@ public class EscuelaProyecto {
 //        g.generarCursos();
         //Colegio col = g.cargar();
         // g.guardar(col);
-//        SelectProfesor sp = new SelectProfesor();
-//        sp.setVisible(true);
-
-        ApoderadosColegioVisual a = new ApoderadosColegioVisual();
-        a.setVisible(true);
+        Principal p = new Principal();
+        p.setVisible(true);
     }
 }

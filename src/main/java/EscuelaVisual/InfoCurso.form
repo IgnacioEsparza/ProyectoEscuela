@@ -227,16 +227,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Alumno4"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Alumno4MouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="Alumno5">
       <Properties>
         <Property name="text" type="java.lang.String" value="Alumno5"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Alumno5MouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="Alumno6">
       <Properties>
         <Property name="text" type="java.lang.String" value="Alumno6"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Alumno6MouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="Alumno7">
       <Properties>

@@ -48,7 +48,17 @@ public class Estudiante {
      * @param rut el rut que se le dará al estudiante
      * @param apoderado el apoderado que tendrá el cual puede ser solo 1
      * @param asignatura las asignaturas que cursará
+     * @param asistencia 
      */
+    
+    public Estudiante(String nombre, String rut, Apoderado apoderado, int asistencia, Asignatura[] asignatura) {
+        this.nombre = nombre;
+        this.rut = rut;
+        this.apoderado = apoderado;
+        this.asistencia = asistencia;
+        this.asignatura = asignatura;
+    }
+
     public Estudiante(String nombre, String rut, Apoderado apoderado, Asignatura[] asignatura) {
         this.nombre = nombre;
         this.rut = rut;
@@ -61,8 +71,6 @@ public class Estudiante {
      * genera una asistencia aleatoria
      */
     public int getAsistencia() {
-        Random r = new Random();
-        this.asistencia=r.nextInt(150) + 30;
         return asistencia;
     }
 

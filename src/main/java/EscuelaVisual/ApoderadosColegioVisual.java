@@ -6,6 +6,7 @@
 package EscuelaVisual;
 
 import EscuelaPackage.Colegio;
+import EscuelaPackage.Curso;
 import EscuelaPackage.Estudiante;
 import Generar.GuardarXML;
 import java.util.ArrayList;
@@ -17,11 +18,13 @@ import java.util.TreeSet;
  * @author Ignacio Esparza
  */
 public class ApoderadosColegioVisual extends javax.swing.JFrame {
-
+    
     GuardarXML gx = new GuardarXML();
     Colegio college = gx.cargar();
     Set<String> ap = new TreeSet();
+    EstudiantesPorApoderado epa = new EstudiantesPorApoderado();
     ArrayList<Estudiante> es = new ArrayList();
+    Curso curso = new Curso();
     ArrayList<String> nombresAB = new ArrayList();
     ArrayList<String> nombresCD = new ArrayList();
     ArrayList<String> nombresEI = new ArrayList();
@@ -32,13 +35,17 @@ public class ApoderadosColegioVisual extends javax.swing.JFrame {
     public ApoderadosColegioVisual() {
         initComponents();
         llenadoBox();
+        setLocationRelativeTo(null);
     }
 
     public ArrayList<Estudiante> buscarApo(String nApoderado) {
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 30; j++) {
                 if (college.getTCursos()[i].getEstudiante()[j].getApoderado().getNombre().equals(nApoderado)) {
+                    curso=college.getTCursos()[i];
+                    college.getTCursos()[i].getEstudiante()[j].setCurso(curso);
                     es.add(college.getTCursos()[i].getEstudiante()[j]);
+                    
                 }
             }
         }
@@ -146,6 +153,7 @@ public class ApoderadosColegioVisual extends javax.swing.JFrame {
         AB4 = new javax.swing.JLabel();
         AB5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        JBVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Apoderados en el Colegio");
@@ -158,14 +166,39 @@ public class ApoderadosColegioVisual extends javax.swing.JFrame {
         });
 
         BoxCD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Nombre" }));
+        BoxCD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoxCDActionPerformed(evt);
+            }
+        });
 
         BoxEI.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Nombre" }));
+        BoxEI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoxEIActionPerformed(evt);
+            }
+        });
 
         BoxJM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Nombre" }));
+        BoxJM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoxJMActionPerformed(evt);
+            }
+        });
 
         BoxNR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Nombre" }));
+        BoxNR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoxNRActionPerformed(evt);
+            }
+        });
 
         BoxSZ.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Nombre" }));
+        BoxSZ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoxSZActionPerformed(evt);
+            }
+        });
 
         AB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AB.setText("A-B");
@@ -188,6 +221,13 @@ public class ApoderadosColegioVisual extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Apoderados en el Colegio");
 
+        JBVolver.setText("Volver");
+        JBVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -201,6 +241,14 @@ public class ApoderadosColegioVisual extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(BoxAB, 0, 212, Short.MAX_VALUE)
+                                    .addComponent(BoxEI, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(50, 50, 50)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(BoxJM, 0, 212, Short.MAX_VALUE)
+                                    .addComponent(BoxCD, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(32, 32, 32)
@@ -211,37 +259,33 @@ public class ApoderadosColegioVisual extends javax.swing.JFrame {
                                     .addComponent(BoxNR, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(AB4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(AB5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(AB3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(31, 31, 31)))
-                                        .addGap(43, 43, 43))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addGap(50, 50, 50)
-                                        .addComponent(BoxSZ, 0, 212, Short.MAX_VALUE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(BoxAB, 0, 212, Short.MAX_VALUE)
-                                    .addComponent(BoxEI, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(50, 50, 50)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(BoxJM, 0, 212, Short.MAX_VALUE)
-                                    .addComponent(BoxCD, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                        .addComponent(BoxSZ, 0, 212, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addComponent(AB4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(AB5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(43, 43, 43))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(AB3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(75, 75, 75)))))))))
                 .addGap(44, 44, 44))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(242, 242, 242)
+                .addComponent(JBVolver)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addGap(79, 79, 79)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(AB3)
-                        .addGap(85, 85, 85)
+                        .addGap(178, 178, 178)
                         .addComponent(AB4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BoxJM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,7 +294,10 @@ public class ApoderadosColegioVisual extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BoxSZ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(AB)
+                        .addGap(79, 79, 79)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(AB)
+                            .addComponent(AB3))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BoxAB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,15 +310,55 @@ public class ApoderadosColegioVisual extends javax.swing.JFrame {
                         .addComponent(AB2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BoxNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(JBVolver)
+                .addGap(23, 23, 23))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BoxABActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoxABActionPerformed
-        //llenadoBox();
+        epa.datos(buscarApo(BoxAB.getSelectedItem().toString())/*,curso*/);
+        epa.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BoxABActionPerformed
+
+    private void BoxCDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoxCDActionPerformed
+        epa.datos(buscarApo(BoxCD.getSelectedItem().toString())/*,curso*/);
+        epa.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BoxCDActionPerformed
+
+    private void BoxEIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoxEIActionPerformed
+        epa.datos(buscarApo(BoxEI.getSelectedItem().toString())/*,curso*/);
+        epa.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BoxEIActionPerformed
+
+    private void BoxJMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoxJMActionPerformed
+        epa.datos(buscarApo(BoxJM.getSelectedItem().toString())/*,curso*/);
+        epa.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BoxJMActionPerformed
+
+    private void BoxNRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoxNRActionPerformed
+        epa.datos(buscarApo(BoxNR.getSelectedItem().toString())/*,curso*/);
+        epa.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BoxNRActionPerformed
+
+    private void BoxSZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoxSZActionPerformed
+        epa.datos(buscarApo(BoxSZ.getSelectedItem().toString())/*,curso*/);
+        epa.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BoxSZActionPerformed
+
+    private void JBVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBVolverActionPerformed
+        Principal p = new Principal();
+        p.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_JBVolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,6 +409,7 @@ public class ApoderadosColegioVisual extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> BoxJM;
     private javax.swing.JComboBox<String> BoxNR;
     private javax.swing.JComboBox<String> BoxSZ;
+    private javax.swing.JButton JBVolver;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,13 +6,9 @@
 package EscuelaVisual.IngresoDatos;
 
 import EscuelaPackage.Curso;
-import EscuelaPackage.Estudiante;
 import EscuelaVisual.OpcionesCurso;
 import Generar.ExportarExcel;
-import java.awt.Color;
 import java.io.File;
-import java.util.ArrayList;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
