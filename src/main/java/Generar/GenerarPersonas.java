@@ -69,8 +69,10 @@ public class GenerarPersonas {
      */
     public ArrayList<Apoderado> apoderado() {
         ArrayList<Apoderado> ap = new ArrayList();
+        int rut=1000;
         for (int i = 0; i < 23; i++) {
-            ap.add(new Apoderado(gnr.nomApoderado(), gnr.rutRandom()));
+            rut++;
+            ap.add(new Apoderado(gnr.nomApoderado(), String.valueOf(rut)));
         }
         return ap;
     }
@@ -89,7 +91,7 @@ public class GenerarPersonas {
         int rut = 700;
         for (int i = 0; i < pro.length; i++) {
             //se genera un rut que ronde los 700
-            rut = rut + i;
+            rut++;
             //se llena la informaciondel profesor
             pro[i] = new Profesor(nomProfesor[i], String.valueOf(rut),
                     asignProfes().get(i));

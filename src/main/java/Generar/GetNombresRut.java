@@ -27,20 +27,28 @@ public class GetNombresRut {
     String [] apellidos={"Catalán","Zambrotta","Salvatore","Silva","Danielez","Curvanez"
     ,"Morenazo","Schwansteigger","Papasthadopoulos","Fischio","Esparza","Palma","McDonals"
     ,"Lumbico","Angulo","Beron","Madrid","Balentines","Jacdaniels","Maxx","Heinz"
-    ,"Burgos","Lee","Xun"};
+    ,"Burgos","Lee","Xun","Arroyo","Artigaz","Bauzà","Bas","Bilbao",
+    "Espada","Elorza","Vasconavarro","Camino","Celdas","Paraguas","Limón","Villarrica",
+    "Del Cerro","Madromo","Uzumaki","Hatake","Astor","Bunge","Olofsson","Berg",
+    "lindgrend","Mattsson","Lundqvist","Coppola","Mirko","Mattia","Alessio","Farina","Luca",
+    "D'amico","Colombo","Giuseppe","Rinaldi","Ricci","Rizzo","Amoretti","Volkova","Lebedev",
+    "Golubev","Petrova","Kuznestsova"};
     
     //24
     String [] nombreApoderado={"Marcos","Raul","Daniel","Roberto","Romero","Alberto"
     ,"Pablo","Juan","Lucas","Pedro","Jannette","Mariana","Denisse","Vanessa","Ignacio"
-    ,"Carlos","Patricio","Cristiano","Lionel","Alexis","Alex","Felipe","Lucila","Manuela"};
+    ,"Carlos","Patricio","Cristiano","Lionel","Alexis","Alex","Felipe","Lucila","Manuela"
+    ,"Ada","Adriana","Agustina","Bárbara","Berta","Camila","Candela","Casandra",
+    "Dafne","Damila","Dina","Elsa","Elizabeth","Emilia","Eugenia",
+    "Fabiola","Wendy","Wanda","Ximena","Zoe","Zacarías","Ulises"};
     
     /**
      * 
      * @return retorna el nombre de algun alumno aleatorio 
      */
     public String nomAlumno (){
-        ale1=r.nextInt(23);
-        ale2=r.nextInt(23);
+        ale1=r.nextInt(nombresAlumno.length);
+        ale2=r.nextInt(apellidos.length);
         return nombresAlumno[ale1]+" "+apellidos[ale2];
     }
     
@@ -48,8 +56,8 @@ public class GetNombresRut {
      * @return retorna el nombre del apoderado aleatorio 
      */
     public String nomApoderado(){
-       ale1=r.nextInt(23);
-       ale2=r.nextInt(23);
+       ale1=r.nextInt(nombreApoderado.length);
+       ale2=r.nextInt(apellidos.length);
        return nombreApoderado[ale1]+" "+apellidos[ale2];
     }
     
