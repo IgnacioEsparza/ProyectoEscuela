@@ -8,7 +8,10 @@ package EscuelaVisual.IngresoDatos;
 import EscuelaPackage.Curso;
 import EscuelaVisual.OpcionesCurso;
 import Generar.ExportarExcel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.File;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,12 +25,25 @@ public class VerAsistencias extends javax.swing.JFrame {
     int materia = -1;
     Curso curso;
     ExportarExcel ee = new ExportarExcel();
-    int porcentaje=80;
+    int porcentaje = 8;
 
     public VerAsistencias() {
         initComponents();
         modelo();
         setLocationRelativeTo(null);
+    }
+
+    public void SNumeros(JTextField jt) {
+        jt.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isDigit(c)) {
+                    //getToolkit().beep();
+                    
+                    e.consume();
+                }
+            }
+        });
     }
 
     public void modelo() {
@@ -61,10 +77,10 @@ public class VerAsistencias extends javax.swing.JFrame {
         for (int i = 0; i < 30; i++) {
             pAsist = ((cursoSel.getEstudiante()[i].getAsistencia()) * 100) / 180;
             String promedios[] = {cursoSel.getEstudiante()[i].getNombre(),
-                String.valueOf(pAsist)+"%"};
+                String.valueOf(pAsist) + "%"};
             modeloA.addRow(promedios);
         }
-        
+
         Datos.setText("Materia : " + cursoSel.getProfesor().getAsignaturaP().getMateria()
                 + ", Curso : " + cursoSel.getNivel() + "º " + cursoSel.getLetra());
         nomProfe.setText("Profesor Jefe : " + cursoSel.getProfesor().getNombre());
@@ -145,6 +161,11 @@ public class VerAsistencias extends javax.swing.JFrame {
                 PorSelectActionPerformed(evt);
             }
         });
+        PorSelect.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                PorSelectKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -218,10 +239,10 @@ public class VerAsistencias extends javax.swing.JFrame {
 
     private void verbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verbotonActionPerformed
         BajoNivelAsistencia bna = new BajoNivelAsistencia();
-        bna.BNAMetodo(curso, pos, porcentaje);
+        bna.BNAMetodo(curso, pos, porcentaje * 10);
         bna.setVisible(true);
         dispose();
-        
+
     }//GEN-LAST:event_verbotonActionPerformed
 
     private void InasisBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InasisBotonActionPerformed
@@ -232,12 +253,19 @@ public class VerAsistencias extends javax.swing.JFrame {
     }//GEN-LAST:event_InasisBotonActionPerformed
 
     private void PorSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PorSelectActionPerformed
-        
+
+    }//GEN-LAST:event_PorSelectActionPerformed
+
+    private void PorSelectKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PorSelectKeyTyped
         try {
-             porcentaje=Integer.parseInt(PorSelect.getText());
+            if (PorSelect.getText().length() >= 3) {
+                evt.consume();
+            }
+            SNumeros(PorSelect);
+            porcentaje = Integer.parseInt(PorSelect.getText());
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_PorSelectActionPerformed
+    }//GEN-LAST:event_PorSelectKeyTyped
 
     /**
      * @param args the command line arguments

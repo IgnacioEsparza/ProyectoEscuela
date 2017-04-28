@@ -15,7 +15,7 @@ import java.io.IOException;
 import javax.xml.bind.JAXBException;
 
 /**
- * @version 1.18.36
+ * @version 1.18.43
  * @author Ignacio Esparza
  */
 public class EscuelaProyecto {

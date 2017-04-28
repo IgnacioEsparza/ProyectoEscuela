@@ -67,37 +67,37 @@ public class ApoderadosColegioVisual extends javax.swing.JFrame {
         for (String s : ap) {
             if (s.substring(0, 1).equals("A") || s.substring(0, 1).equals("B")) {
                 nombresAB.add(s);
-                System.out.println("________________________________");
-                System.out.println((i + 1) + " " + nombresAB.get(i));
+                //System.out.println("________________________________");
+                //System.out.println((i + 1) + " " + nombresAB.get(i));
                 i++;
             }
             if (s.substring(0, 1).equals("C") || s.substring(0, 1).equals("D")) {
                 nombresCD.add(s);
-                System.out.println("________________________________");
-                System.out.println((j + 1) + " " + nombresCD.get(j));
+//                System.out.println("________________________________");
+//                System.out.println((j + 1) + " " + nombresCD.get(j));
                 j++;
             }
             if (s.substring(0, 1).equals("E") || s.substring(0, 1).equals("F")
                     || s.substring(0, 1).equals("G") || s.substring(0, 1).equals("H")
                     || s.substring(0, 1).equals("I")) {
                 nombresEI.add(s);
-                System.out.println("________________________________");
-                System.out.println((k + 1) + " " + nombresEI.get(k));
+//                System.out.println("________________________________");
+//                System.out.println((k + 1) + " " + nombresEI.get(k));
                 k++;
             }
             if (s.substring(0, 1).equals("J") || s.substring(0, 1).equals("K")
                     || s.substring(0, 1).equals("L") || s.substring(0, 1).equals("M")) {
                 nombresJM.add(s);
-                System.out.println("________________________________");
-                System.out.println((l + 1) + " " + nombresJM.get(l));
+//                System.out.println("________________________________");
+//                System.out.println((l + 1) + " " + nombresJM.get(l));
                 l++;
             }
             if (s.substring(0, 1).equals("N") || s.substring(0, 1).equals("O")
                     || s.substring(0, 1).equals("P") || s.substring(0, 1).equals("Q")
                     || s.substring(0, 1).equals("R")) {
                 nombresNR.add(s);
-                System.out.println("________________________________");
-                System.out.println((m + 1) + " " + nombresNR.get(m));
+//                System.out.println("________________________________");
+//                System.out.println((m + 1) + " " + nombresNR.get(m));
                 m++;
             }
             if (s.substring(0, 1).equals("S")
@@ -106,8 +106,8 @@ public class ApoderadosColegioVisual extends javax.swing.JFrame {
                     || s.substring(0, 1).equals("X") || s.substring(0, 1).equals("Y")
                     || s.substring(0, 1).equals("Z")) {
                 nombresSZ.add(s);
-                System.out.println("________________________________");
-                System.out.println((n + 1) + " " + nombresSZ.get(n));
+//                System.out.println("________________________________");
+//                System.out.println((n + 1) + " " + nombresSZ.get(n));
                 n++;
             }
 

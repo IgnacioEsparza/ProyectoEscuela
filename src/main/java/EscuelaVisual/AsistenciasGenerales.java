@@ -9,6 +9,10 @@ import EscuelaPackage.Colegio;
 import EscuelaPackage.Curso;
 import Generar.ExportarExcel;
 import Generar.GuardarXML;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,12 +25,25 @@ public class AsistenciasGenerales extends javax.swing.JFrame {
     Colegio col = g.cargar();
     DefaultTableModel modeloA;
     ExportarExcel ee = new ExportarExcel();
-    int porcentaje = 80;
+    int porcentaje = 8;
 
     public AsistenciasGenerales() {
         initComponents();
         modelo();
         setLocationRelativeTo(null);
+    }
+
+    public void SNumeros(JTextField jt) {
+        jt.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isDigit(c)) {
+                    //getToolkit().beep();
+
+                    e.consume();
+                }
+            }
+        });
     }
 
     public void modelo() {
@@ -64,6 +81,7 @@ public class AsistenciasGenerales extends javax.swing.JFrame {
         BTBAsistencias = new javax.swing.JButton();
         JTFPorcentaje = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,14 +113,25 @@ public class AsistenciasGenerales extends javax.swing.JFrame {
         });
 
         JTFPorcentaje.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        JTFPorcentaje.setText("%");
         JTFPorcentaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTFPorcentajeActionPerformed(evt);
             }
         });
+        JTFPorcentaje.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                JTFPorcentajeKeyTyped(evt);
+            }
+        });
 
         jLabel1.setText("Asistencias de todos los alumnos del Colegio");
+
+        jButton1.setText("Exportar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,20 +144,23 @@ public class AsistenciasGenerales extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(JBVolver)
-                        .addGap(62, 62, 62)
+                        .addGap(58, 58, 58)
                         .addComponent(JTFPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BTBAsistencias))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -150,6 +182,7 @@ public class AsistenciasGenerales extends javax.swing.JFrame {
 
     private void JTFPorcentajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFPorcentajeActionPerformed
         try {
+            SNumeros(JTFPorcentaje);
             porcentaje = Integer.parseInt(JTFPorcentaje.getText());
         } catch (Exception e) {
         }
@@ -157,10 +190,24 @@ public class AsistenciasGenerales extends javax.swing.JFrame {
 
     private void BTBAsistenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTBAsistenciasActionPerformed
         BajasAsistenciasGeneral bag = new BajasAsistenciasGeneral();
-        bag.asistenciasMetodo(porcentaje);
+        bag.asistenciasMetodo(porcentaje * 10);
         bag.setVisible(true);
         dispose();
     }//GEN-LAST:event_BTBAsistenciasActionPerformed
+
+    private void JTFPorcentajeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTFPorcentajeKeyTyped
+        try {
+            if (JTFPorcentaje.getText().length() >= 3) {
+                evt.consume();
+            }
+            porcentaje = Integer.parseInt(JTFPorcentaje.getText());
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_JTFPorcentajeKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ee.exportar(new File("Asistencias Escuela.xls"), JTAsistencias);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,6 +249,7 @@ public class AsistenciasGenerales extends javax.swing.JFrame {
     private javax.swing.JButton JBVolver;
     private javax.swing.JTable JTAsistencias;
     private javax.swing.JTextField JTFPorcentaje;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
