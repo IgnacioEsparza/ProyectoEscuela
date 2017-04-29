@@ -5,17 +5,13 @@
  */
 package EscuelaPackage;
 
-import EscuelaVisual.ApoderadosColegioVisual;
-import EscuelaVisual.IngresoDatos.IngPlanificaciones;
 import EscuelaVisual.Principal;
-import EscuelaVisual.SelectProfesor;
-import Generar.GenerarCursos;
 import Generar.GuardarXML;
 import java.io.IOException;
 import javax.xml.bind.JAXBException;
 
 /**
- * @version 1.18.43
+ * @version 1.18.44
  * @author Ignacio Esparza
  */
 public class EscuelaProyecto {
